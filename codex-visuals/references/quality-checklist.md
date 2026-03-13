@@ -1,37 +1,30 @@
 # Quality Checklist
 
-Run this checklist before sending a user-facing visual.
+Run this pass before shipping a user-facing visual.
 
-## Technical
+## Preview Readiness
 
-- file writes successfully
-- SVG parses cleanly
-- `title`, `desc`, and `viewBox` are present
-- no external URLs, scripts, or `foreignObject`
-- output path is absolute before embedding
+- The title is obvious within one second.
+- The main structure reads correctly at normal README or chat scale.
+- No text overlaps geometry, leader lines, or card borders.
+- Callout spacing is even and deliberate.
 
-## Visual
+## Contract Integrity
 
-- title is concise
-- labels are readable at normal chat width
-- long callouts are wrapped into short lines instead of one clipped sentence
-- color count is limited
-- the main subject is obvious within one second
-- whitespace is sufficient
-- the title band is visually clear, with no arrows or geometry competing with the heading copy
-- arrows and leader lines do not create confusion
+- The output is Mermaid or SVG only.
+- SVG includes `viewBox`, `<title>`, and `<desc>`.
+- No `script`, `foreignObject`, or external asset references are present.
+- The chosen mode matches the request type.
 
-## Communication
+## Repo Hygiene
 
-- the visual answers the user's actual question
-- the caption does not restate the entire figure
-- any limitation or assumption is stated plainly
-- the chosen mode matches the client's known capabilities
+- The artifact exists at the documented path.
+- `README.md`, `examples/prompts.md`, and `examples/catalog.json` describe the same example set.
+- No stale `.png` references or removed preview labels remain.
+- The SVG validates successfully.
 
-## Release Readiness
+## Scale Safety
 
-- install works on a fresh Codex profile
-- quick validation passes
-- smoke render passes
-- example outputs are current
-- README screenshots match current behavior
+- The visual still reads when scaled down in a GitHub README.
+- Long sentences are wrapped before they collide with margins.
+- Footnotes stay short or are omitted entirely.

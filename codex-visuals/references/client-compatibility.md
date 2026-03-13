@@ -1,59 +1,39 @@
 # Client Compatibility
 
-Use this file first to choose a rendering mode that the current client can actually display.
+Choose the lightest native format that the client can render reliably.
 
-## Capability Ladder
+## Native Capability Ladder
 
-1. Mermaid fence for simple graphs and workflows
-2. Standalone SVG file embedded with a Markdown image tag
+1. Mermaid fence for graph-style workflows and lifecycles
+2. Standalone SVG embedded with a Markdown image tag
 3. Raw source only when the user explicitly asks for source
 
-Default to the highest reliable rung, not the fanciest one.
+Do not assume anything above this ladder exists.
 
-## Codex Desktop
+## Codex Desktop Default
 
-Codex desktop should be treated as native Mermaid plus SVG first.
+- Use Mermaid first for simple flows, request paths, and graph-like diagrams.
+- Use SVG images for engineering visuals, comparison boards, and annotated layouts.
+- Use absolute paths when embedding local SVG files in chat responses.
 
-- Best primary path for flows: Mermaid fence
-- Best primary path for precise layouts: Markdown image tag to a local absolute SVG path
-- Mermaid: preferred for simple flows and graphs in Codex desktop
-- Custom fences such as `visualizer`: unsupported by default
-- HTML widgets and iframe-based interactivity: do not assume support
-- Raster export is outside the v1 runtime contract for this repo
+## Unsupported For v1
 
-## Output Rules By Mode
+- PNG or raster-only outputs as the primary path
+- Custom `visualizer` fences
+- HTML widgets, `foreignObject`, or script-driven interactivity
+- Browser-export requirements
 
-### SVG + Markdown image
+## Embedding Rules
 
-Use when:
-
-- you need precise layout or engineering-style labeling
-- the client can render local images
-- you want the source to remain editable
-
-Requirements:
-
-- standalone SVG
-- embedded fonts avoided
-- `title`, `desc`, `viewBox`
-- no external `href`, `script`, or `foreignObject`
-
-### Mermaid
-
-Use as the first choice when:
-
-- the diagram is a simple flow or graph
-- the current client is Codex desktop or another known Mermaid-capable surface
-- text layout is more important than custom geometry
-
-Do not use Mermaid for dense engineering callouts, structural sections, or detailed comparison cards.
-
-## Markdown Embedding
-
-Use absolute paths:
+SVG image:
 
 ```markdown
-![Short alt text](C:/absolute/path/diagram.svg)
+![House load transfer diagram](C:/absolute/path/house-load-transfer.svg)
 ```
 
-Alt text should describe the visual in one short phrase.
+Mermaid:
+
+```mermaid
+flowchart LR
+  A[Browser] --> B[Gateway]
+```

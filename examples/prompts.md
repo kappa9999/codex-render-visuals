@@ -1,61 +1,56 @@
-# Example prompts
+# Example Prompts
 
-Use these prompts to verify that `codex-visuals` chooses a sensible native output mode without introducing a raster step.
+Use these prompts to confirm that `codex-visuals` chooses the correct native output mode and writes the expected artifact set.
 
-## 1. Structural explanation
+## Engineering SVG: House Load Transfer
 
 Prompt:
 
 ```text
-Use $codex-visuals to visualize load transfer in a house as a production SVG diagram.
+Use $codex-visuals to visualize gravity load transfer in a typical house as a clean structural engineering SVG.
 ```
 
-Expected mode:
+Expected mode: `svg`
 
-- Primary: standalone SVG embedded as a Markdown image
-
-Expected artifact:
+Primary artifact:
 
 - `examples/house-load-transfer.svg`
 
-## 2. Process flow
+## Workflow Mermaid: API Request Lifecycle
 
 Prompt:
 
 ```text
-Use $codex-visuals to draw a flowchart of an API request lifecycle from browser to database and back.
+Use $codex-visuals to draw an API request lifecycle from browser to database and back as a native Mermaid flowchart.
 ```
 
-Expected mode:
+Expected mode: `mmd`
 
-- Mermaid fence in Codex desktop
-- SVG only when the flow needs custom geometry or annotation density Mermaid cannot handle
-
-Expected artifact:
+Primary artifact:
 
 - `examples/api-request-lifecycle.mmd`
-- `examples/api-request-lifecycle.svg`
-- A single annotated diagram with arrows, retries if relevant, and clear failure/response branches
 
-## 3. Comparison layout
+Supporting artifact:
+
+- `examples/api-request-lifecycle.svg`
+
+## Comparison SVG: SQLite vs PostgreSQL
 
 Prompt:
 
 ```text
-Use $codex-visuals to compare slab-on-grade versus crawlspace foundations for an early-stage residential design review.
+Use $codex-visuals to compare SQLite and PostgreSQL as a clean two-column SVG decision board for engineering teams.
 ```
 
-Expected mode:
+Expected mode: `svg`
 
-- SVG comparison board
+Primary artifact:
 
-Expected artifact:
+- `examples/sqlite-vs-postgres.svg`
 
-- Two side-by-side visual columns with concise pros, constraints, and site-fit callouts
+## Review Checklist
 
-## Review checklist
-
-- The output is Mermaid or SVG, not a raster screenshot.
-- Labels are readable at normal chat width.
-- The diagram has an obvious title, hierarchy, and margins.
-- There is no clipped content or overlapping annotation text.
+- The output mode matches the prompt type.
+- Mermaid examples stay graph-like and compact.
+- SVG examples stay readable at README scale without text collisions.
+- Every public artifact exists and validates cleanly.

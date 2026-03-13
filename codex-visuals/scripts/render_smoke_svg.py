@@ -16,56 +16,65 @@ from validate_svg import validate_svg_file
 from write_visual import write_text_artifact
 
 
-SMOKE_SVG = """<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="500" viewBox="0 0 1080 500" role="img" aria-labelledby="title desc">
+SMOKE_SVG = """<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="560" viewBox="0 0 1160 560" role="img" aria-labelledby="title desc">
   <title id="title">API request lifecycle</title>
-  <desc id="desc">A polished left-to-right flow showing browser request, gateway routing, service execution, database query, and response return.</desc>
+  <desc id="desc">A polished request flow showing browser request, API gateway, application service, database access, and response return.</desc>
   <defs>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
   </defs>
-  <rect x="24" y="24" width="1032" height="452" rx="24" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
-  <text x="52" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="600" fill="#1F2937">API request lifecycle</text>
-  <text x="52" y="96" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#4B5563">Reference flow for the codex-visuals smoke renderer.</text>
-
-  <rect x="60" y="152" width="190" height="92" rx="16" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
-  <rect x="300" y="152" width="190" height="92" rx="16" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
-  <rect x="540" y="152" width="190" height="92" rx="16" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
-  <rect x="780" y="152" width="190" height="92" rx="16" fill="#E5E7EB" stroke="#4B5563" stroke-width="2"/>
-
-  <text x="155" y="186" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" fill="#1F2937" text-anchor="middle">Browser client</text>
-  <text x="155" y="212" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563" text-anchor="middle">Sends authenticated</text>
-  <text x="155" y="232" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563" text-anchor="middle">request to the API</text>
-
-  <text x="395" y="186" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" fill="#1F2937" text-anchor="middle">Gateway</text>
-  <text x="395" y="212" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563" text-anchor="middle">Applies auth, rate</text>
-  <text x="395" y="232" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563" text-anchor="middle">limits, and routing</text>
-
-  <text x="635" y="186" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" fill="#1F2937" text-anchor="middle">Application service</text>
-  <text x="635" y="212" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563" text-anchor="middle">Runs domain logic and</text>
-  <text x="635" y="232" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563" text-anchor="middle">builds a response</text>
-
-  <text x="875" y="186" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" fill="#1F2937" text-anchor="middle">Database</text>
-  <text x="875" y="212" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563" text-anchor="middle">Reads or writes</text>
-  <text x="875" y="232" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563" text-anchor="middle">persistent state</text>
-
-  <path d="M250 198 L300 198" fill="none" stroke="#D97706" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-  <path d="M490 198 L540 198" fill="none" stroke="#D97706" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-  <path d="M730 198 L780 198" fill="none" stroke="#D97706" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-
-  <path d="M875 244 L875 314 L635 314" fill="none" stroke="#4B5563" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-  <path d="M635 336 L395 336 L155 336" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-
-  <text x="816" y="300" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563">query result</text>
-  <text x="465" y="326" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563">JSON response returns to the caller</text>
-
-  <rect x="60" y="388" width="910" height="74" rx="14" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
-  <text x="84" y="418" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#1F2937">Why this sample exists</text>
-  <text x="250" y="418" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4B5563">
-    <tspan x="250" dy="0">It exercises node layout, arrow routing,</tspan>
-    <tspan x="250" dy="18">and a return path inside one</tspan>
-    <tspan x="250" dy="18">compact artifact.</tspan>
+  <rect x="0" y="0" width="1160" height="560" fill="#f6f8fb"/>
+  <rect x="32" y="24" width="1096" height="512" rx="22" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <rect x="32" y="24" width="1096" height="104" rx="22" fill="url(#headerGrad)"/>
+  <rect x="32" y="104" width="1096" height="24" fill="url(#headerGrad)"/>
+  <text x="68" y="74" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#ffffff">API request lifecycle</text>
+  <text x="68" y="100" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#dbe7f8">
+    <tspan x="68" dy="0">Reference SVG for the Codex-native</tspan>
+    <tspan x="68" dy="22">Mermaid and SVG workflow.</tspan>
   </text>
+
+  <rect x="68" y="156" width="1024" height="56" rx="12" fill="#eef4ff" stroke="#d5e2f7" stroke-width="1.5"/>
+  <text x="92" y="190" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#334155">Smoke sample goal</text>
+  <text x="274" y="184" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" fill="#475569">
+    <tspan x="274" dy="0">Exercise layout, card spacing, arrow routing,</tspan>
+    <tspan x="274" dy="20">and a readable return path in one compact artifact.</tspan>
+  </text>
+
+  <rect x="88" y="256" width="190" height="94" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <rect x="336" y="256" width="190" height="94" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <rect x="584" y="256" width="190" height="94" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <rect x="832" y="256" width="190" height="94" rx="16" fill="#eef2f7" stroke="#64748b" stroke-width="2"/>
+
+  <text x="183" y="292" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Browser client</text>
+  <text x="183" y="318" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">Sends the request</text>
+  <text x="183" y="338" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">and receives JSON</text>
+
+  <text x="431" y="292" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">API gateway</text>
+  <text x="431" y="318" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">Auth, limits, and</text>
+  <text x="431" y="338" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">routing decisions</text>
+
+  <text x="679" y="292" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Application service</text>
+  <text x="679" y="318" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">Validation, business</text>
+  <text x="679" y="338" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">logic, and response</text>
+
+  <text x="927" y="292" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Primary database</text>
+  <text x="927" y="318" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">Reads or writes</text>
+  <text x="927" y="338" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">persistent state</text>
+
+  <path d="M278 303 L336 303" fill="none" stroke="#ea580c" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M526 303 L584 303" fill="none" stroke="#ea580c" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M774 303 L832 303" fill="none" stroke="#ea580c" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <path d="M927 350 L927 412 L679 412" fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M679 438 L431 438 L183 438" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <text x="844" y="398" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">query result</text>
+  <text x="458" y="428" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">response path back to the caller</text>
 </svg>
 """
 

@@ -1,29 +1,26 @@
 # codex-render-visuals
 
-Production-ready Mermaid and SVG visuals for Codex-compatible clients.
+Native Mermaid and SVG visual skill for Codex-compatible clients.
 
-`codex-render-visuals` packages the `codex-visuals` skill: a native-first workflow for generating Mermaid or SVG visuals that render cleanly in Codex-compatible clients without a browser-based export step.
+`codex-render-visuals` packages `codex-visuals`, a production-oriented public skill that keeps Codex on native rendering paths. Use Mermaid for workflows and graphs. Use standalone SVG for engineering diagrams, annotated explainers, and comparison boards that need precise geometry.
 
-## Highlights
+## What It Supports
 
-- Lean, production-oriented Codex skill under `codex-visuals/`
-- Native Codex path: Mermaid for flows, SVG for precise geometry
-- No browser or rasterizer dependency required for normal Codex desktop use
-- Built-in validation, smoke rendering, install helpers, and example artifacts
-- Designed around what Codex desktop reliably supports today
+- Native Mermaid workflows and flowcharts
+- Standalone SVG visuals that render cleanly as Markdown images
+- Lean install and validation helpers for Codex skill packaging
+- Curated examples that demonstrate the intended output standard
 
-## Compatibility
+## What It Does Not Support
 
-| Client capability | Status | Default behavior |
-| --- | --- | --- |
-| Mermaid fence | Supported in native Codex-style surfaces and GitHub | Primary flow/workflow mode |
-| Markdown image tag to local SVG | Expected in Codex-compatible clients | Primary precision / engineering mode |
-| Raw HTML widgets / iframe visuals | Not a public guarantee | Out of scope for v1 |
-| Custom `visualizer` fence | Unsupported in current Codex desktop builds | Not used by this repo |
+- PNG or raster export paths in the main workflow
+- Browser-only rendering dependencies
+- Custom `visualizer` fences or iframe widgets
+- HTML-heavy interactive components as a default contract
 
 ## Install
 
-Primary install uses Codex's GitHub skill installer and targets the `codex-visuals/` folder in this repository.
+Install the `codex-visuals/` folder with Codex's GitHub skill installer.
 
 ### PowerShell
 
@@ -41,27 +38,7 @@ python "$HOME/.codex/skills/.system/skill-installer/scripts/install-skill-from-g
   --path codex-visuals
 ```
 
-### Manual fallback
-
-1. Clone the repository.
-2. Copy `codex-visuals/` into `~/.codex/skills/codex-visuals`.
-3. Restart Codex.
-
-Windows example:
-
-```powershell
-git clone https://github.com/kappa9999/codex-render-visuals.git
-Copy-Item -Recurse .\codex-render-visuals\codex-visuals "$env:USERPROFILE\.codex\skills\codex-visuals"
-```
-
-POSIX example:
-
-```bash
-git clone https://github.com/kappa9999/codex-render-visuals.git
-cp -R ./codex-render-visuals/codex-visuals "$HOME/.codex/skills/codex-visuals"
-```
-
-Bundled local install helpers are also included:
+### Local Repository Install
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\codex-visuals\scripts\install-skill-from-repo.ps1
@@ -73,117 +50,105 @@ bash ./codex-visuals/scripts/install-skill-from-repo.sh
 
 Restart Codex after installation.
 
-## First Run
+## How It Chooses Mermaid vs SVG
 
-Paste this into Codex:
+| Request pattern | Native mode | Why |
+| --- | --- | --- |
+| Workflow, lifecycle, graph, request path | Mermaid | Mermaid is lighter, faster, and reads well inline |
+| Engineering section, load path, comparison board, annotated explainer | SVG | SVG gives precise layout control without leaving the native Codex path |
+| Dense or client-unsupported interaction | Stay on Mermaid or SVG and state the limitation | v1 avoids non-native renderer assumptions |
 
-```text
-Use $codex-visuals to visualize load transfer in a house as a clean SVG diagram and embed it as an image.
-```
+## Curated Examples
 
-Expected result:
+### Engineering SVG: House Load Transfer
 
-- The skill chooses the lightest native output mode that fits the request
-- It writes a standalone SVG artifact when precise layout is needed
-- It emits Mermaid directly for simple flows when that is the cleaner Codex-native option
-- It validates SVGs before embedding them as images
-- It stays on Mermaid or SVG for v1 instead of invoking a raster export step
-
-## Example Outputs
+Use case: explain the gravity load path in a light-frame house without forcing the reader to zoom into overlapping callouts.
 
 Prompt:
 
 ```text
-Visualize load transfer in a house for a structural engineering explanation.
+Use $codex-visuals to visualize gravity load transfer in a typical house as a clean structural engineering SVG.
 ```
 
-Second sample:
+Preview:
+
+![House load transfer preview](./examples/house-load-transfer.svg)
+
+Primary artifact: [`examples/house-load-transfer.svg`](./examples/house-load-transfer.svg)
+
+### Workflow Mermaid: API Request Lifecycle
+
+Use case: show a request moving through a browser, gateway, service, database, and response path using the native Mermaid route.
+
+Prompt:
 
 ```text
-Use $codex-visuals to draw a flowchart of an API request lifecycle from browser to database and back.
+Use $codex-visuals to draw an API request lifecycle from browser to database and back as a native Mermaid flowchart.
 ```
 
-Native Codex flow sample:
+Preview:
 
 ```mermaid
 flowchart LR
-  browser["Browser<br/>client"] --> gateway["API gateway<br/>auth + rate limits"]
-  gateway --> service["Service<br/>validation + logic"]
-  service --> database["Database<br/>state read / write"]
+  browser["Browser client"] --> gateway["API gateway"]
+  gateway --> service["Application service"]
+  service --> database["Primary database"]
   database --> service
-  service --> gateway
-  gateway --> browser_response["Browser<br/>JSON response"]
+  service --> response["JSON response"]
+  response --> browser
 ```
 
-Included artifacts:
+Primary artifact: [`examples/api-request-lifecycle.mmd`](./examples/api-request-lifecycle.mmd)
 
-- [examples/house-load-transfer.svg](examples/house-load-transfer.svg)
-- [examples/api-request-lifecycle.mmd](examples/api-request-lifecycle.mmd)
-- [examples/api-request-lifecycle.svg](examples/api-request-lifecycle.svg)
-- [examples/prompts.md](examples/prompts.md)
+Reference artifact: [`examples/api-request-lifecycle.svg`](./examples/api-request-lifecycle.svg)
 
-## How It Works
+### Comparison SVG: SQLite vs PostgreSQL
 
-1. `codex-visuals/SKILL.md` stays lean and procedural so the skill triggers correctly.
-2. Detailed guidance lives in `codex-visuals/references/`.
-3. Deterministic helpers in `codex-visuals/scripts/` handle output path creation, Mermaid fencing, SVG validation, smoke rendering, and install helpers.
-4. Runtime output in Codex desktop stays native-first: Mermaid fence or SVG image.
-5. v1 intentionally avoids a raster-export dependency in the core path.
+Use case: compare two technical choices in a board that reads cleanly at README scale and survives chat-size rendering.
+
+Prompt:
+
+```text
+Use $codex-visuals to compare SQLite and PostgreSQL as a clean two-column SVG decision board for engineering teams.
+```
+
+Preview:
+
+![SQLite vs PostgreSQL comparison preview](./examples/sqlite-vs-postgres.svg)
+
+Primary artifact: [`examples/sqlite-vs-postgres.svg`](./examples/sqlite-vs-postgres.svg)
+
+## Validation And Contribution Workflow
+
+Run the product checks before publishing:
+
+```bash
+python codex-visuals/scripts/quick_validate.py codex-visuals
+python codex-visuals/scripts/render_smoke_svg.py --output-dir ./tmp/smoke
+python codex-visuals/scripts/validate_svg.py ./examples/house-load-transfer.svg
+python codex-visuals/scripts/validate_svg.py ./examples/sqlite-vs-postgres.svg
+pytest
+```
+
+Contributor expectations:
+
+- Keep the public contract on Mermaid plus SVG only
+- Add or update examples through `examples/catalog.json`
+- Keep `README.md`, `examples/prompts.md`, and the example artifacts in sync
+- Validate the exact SVGs that are surfaced in the repository
 
 ## Repository Layout
 
 ```text
 codex-render-visuals/
-├── codex-visuals/        # Installable Codex skill
-├── examples/             # Prompt gallery and sample outputs
-├── tests/                # Validation and smoke tests
+├── codex-visuals/        # Installable public skill
+├── examples/             # Curated examples and prompts
+├── tests/                # Contract and validation tests
 ├── README.md
 ├── LICENSE
 └── pyproject.toml
 ```
 
-## Validation
-
-For contributors and release testing:
-
-```bash
-python codex-visuals/scripts/quick_validate.py codex-visuals
-python codex-visuals/scripts/render_smoke_svg.py --output-dir ./tmp/smoke
-pytest
-```
-
-To print a Mermaid fence while also writing a deterministic `.mmd` artifact:
-
-```bash
-python codex-visuals/scripts/write_visual.py --slug api-request-lifecycle --format mmd --source-file ./examples/api-request-lifecycle.mmd --print-fence
-```
-
-Release bar:
-
-- Fresh install succeeds into a clean `~/.codex/skills` directory
-- At least one real prompt renders correctly in Codex desktop
-- Validation scripts pass
-- Example screenshots and sample artifacts are current
-- Native Mermaid and SVG paths stay dependency-light
-
-## Limitations
-
-- This repository does not depend on a custom `visualizer` fence
-- Interactive HTML widgets are intentionally out of scope for v1
-- Mermaid should still be kept to graph-style diagrams, not dense engineering sections
-- Raster export is intentionally out of scope for v1
-
-## Development
-
-- Keep the skill folder optimized for Codex
-- Keep repo-level setup and release docs in the repository root
-- Prefer additive examples and tests over expanding `SKILL.md`
-- Validate both metadata and output artifacts before publishing
-
-## Repository
-
-- GitHub: [kappa9999/codex-render-visuals](https://github.com/kappa9999/codex-render-visuals)
-
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](./LICENSE).

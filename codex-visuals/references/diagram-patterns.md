@@ -1,93 +1,33 @@
 # Diagram Patterns
 
-Pick the pattern that matches the user's request.
+Pick the diagram mode by pattern, not by preference.
 
-## Flow Diagram
+## Use Mermaid
 
-Use for steps, lifecycles, or pipelines.
+Choose Mermaid when the request is primarily a graph:
 
-- Lay out left-to-right or top-to-bottom
-- Keep 4 to 6 nodes in the primary path
-- Use arrows with clear start and end points
-- Keep node text short enough to fit on one or two lines
+- workflow
+- lifecycle
+- request path
+- service interaction
+- simple decision flow
 
-Good prompts:
+Keep Mermaid compact. If the diagram needs custom geometry, dense annotation, or asymmetric layout, switch to SVG.
 
-- "Map out the API request lifecycle"
-- "Show the steps in plan review"
+## Use SVG
 
-## Structural Diagram
+Choose SVG when the request needs layout precision:
 
-Use for parts, layers, containment, or support hierarchy.
+- structural or engineering load path
+- side-by-side comparison board
+- annotated mechanism diagram
+- explainer with callouts, leader lines, or spatial relationships
 
-- Large regions show containers or zones
-- Smaller items show subcomponents
-- External inputs and outputs sit outside the boundary
-- Use callouts instead of stuffing dense text into the geometry
+SVG should be the default for any visual where text placement and spacing are part of the explanation.
 
-Good prompts:
+## Pattern Notes
 
-- "Show the components of this system"
-- "Visualize the load path in a house"
-
-## Illustrative Mechanism Diagram
-
-Use when the user asks how something works.
-
-- Draw the object or system in simplified sectional form
-- Use arrows to show movement, force, heat, flow, or transfer
-- Put explanatory callouts on one side
-- Use warm colors for active paths and neutral colors for passive structure
-
-Good prompts:
-
-- "Explain how load transfer works"
-- "Show how water moves through the system"
-
-## Comparison Layout
-
-Use for side-by-side choices.
-
-- Split into 2 or 3 balanced columns
-- Keep the same categories in the same vertical order
-- Use small metrics or pros/cons rows
-- End with a short "best fit" row if appropriate
-
-Good prompts:
-
-- "Compare slab-on-grade vs crawlspace"
-- "Compare steel framing and mass timber"
-
-## Coordinate Guidance
-
-For a single subject with callouts:
-
-- Main geometry: left 55 percent
-- Callouts: right 45 percent
-- Title at top
-- Keep a dedicated header zone so decorative arrows never pass behind the title or subtitle
-- Summary note at bottom only if it adds value
-
-For process visuals:
-
-- Evenly space primary nodes
-- Keep connector bends orthogonal when direct lines would cross boxes
-- Prefer compact height so the figure still reads cleanly when scaled in a README or chat transcript
-
-## Label Rules
-
-- Prefer short noun phrases
-- Explanations belong in callouts, not inside core geometry
-- Wrap callout copy into short stacked lines when one sentence would run wider than the available column
-- Every leader line must terminate clearly
-- Every arrow should encode one meaning only
-- If the figure becomes crowded, remove decorative arrows before shrinking text
-
-## Common Failure Modes
-
-- too many colors
-- tiny text
-- clipped labels
-- decorative backgrounds
-- callouts scattered on both sides with no reading order
-- arrows passing through unrelated geometry
+- Comparison boards: SVG only
+- Load paths and building sections: SVG only
+- API or software lifecycles: Mermaid first, SVG only when annotation density demands it
+- Public README examples: favor the format that reads best inline with no extra tooling

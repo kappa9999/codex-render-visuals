@@ -43,6 +43,7 @@ def test_public_skill_layout_exists() -> None:
     ]
     missing = [str(path.relative_to(REPO_ROOT)) for path in required_paths if not path.exists()]
     assert not missing, f"Missing expected public skill files: {missing}"
+    assert not (SKILL_DIR / "references" / "chart-patterns.md").exists()
 
 
 def test_skill_metadata_and_ui_contract() -> None:
@@ -57,8 +58,7 @@ def test_skill_metadata_and_ui_contract() -> None:
 
     interface = ui_config["interface"]
     assert interface["display_name"] == "Codex Visuals"
-    assert interface["short_description"]
-    assert 25 <= len(interface["short_description"]) <= 64
+    assert interface["short_description"] == "Native Mermaid and SVG visual skill for Codex"
     assert "$codex-visuals" in interface["default_prompt"]
 
 

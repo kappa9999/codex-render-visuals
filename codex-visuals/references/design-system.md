@@ -1,76 +1,35 @@
 # Design System
 
-This skill targets production static visuals inside chat, not decorative illustrations.
-
-## Principles
-
-- Flat over flashy
-- Clear hierarchy over novelty
-- Compact over sprawling
-- Accurate labeling over ornament
-- Readable at chat width
+Optimize every public visual for README scale and normal chat width.
 
 ## Typography
 
-- Sans serif only by default
-- Title: 22px to 28px
-- Primary labels: 14px to 18px
-- Secondary labels: 12px to 14px
-- Minimum text size: 11px
-- Use sentence case
-- Use bold sparingly for structure, not emphasis noise
-
-Good font stack for standalone SVG:
-
-```text
-"Segoe UI", Arial, sans-serif
-```
-
-## Color
-
-Limit each visual to 2 to 4 semantic groups.
-
-- Neutral structure: `#E5E7EB` fill, `#4B5563` stroke
-- Information / framing: `#DBEAFE` fill, `#2563EB` stroke
-- Warning / load path: `#FEF3C7` fill, `#D97706` stroke
-- Emphasis / bearing or critical load path: `#FEE2E2` fill, `#DC2626` stroke
-- Success / support medium or accepted state: `#D1FAE5` fill, `#059669` stroke
-- Primary text: `#1F2937`
-- Secondary text: `#4B5563`
-- Light border: `#E5E7EB`
-
-Avoid gradients, shadows, blur, glow, textures, and glassmorphism.
+- Use a system sans stack: `"Segoe UI", Roboto, Helvetica, Arial, sans-serif`
+- Keep titles between `34px` and `42px`
+- Keep section labels between `18px` and `24px`
+- Keep body copy between `14px` and `18px`
+- Wrap long copy into short lines instead of stretching one sentence across the canvas
 
 ## Layout
 
-- Give the visual a 32px to 48px safe margin
-- Reserve a clear title band at the top; arrows, leaders, and geometry should not pass through title or subtitle copy
-- Keep the main subject on the left or center, callouts on one side
-- Leave enough whitespace between callouts to read each one independently
-- Avoid crossing arrows whenever possible
-- Prefer one clear reading direction
-- Scale for README width first, then add detail only if it still reads cleanly when reduced
+- Reserve a dedicated header band; no arrows or geometry may cross it
+- Use generous outer margins
+- Keep clear gutters between the main graphic and callout cards
+- Prefer one dominant panel instead of many small disconnected boxes
+- Leave at least `24px` vertical breathing room between stacked cards
 
-## SVG Structure
+## SVG Rules
 
-Every production SVG should include:
+- Include `viewBox`, `<title>`, and `<desc>`
+- Keep backgrounds white or very light
+- Avoid external fonts, scripts, or network references
+- Prefer simple gradients and restrained shadows over decorative effects
+- Use consistent stroke weights within the same diagram family
 
-- `viewBox`
-- `title`
-- `desc`
-- a small internal stylesheet or repeated presentation attributes
-- transparent or white background
+## Preview-Safe Rules
 
-Recommended:
-
-- rounded corners: 4px to 12px
-- border width: 1px to 2.5px
-- leader lines: dashed neutral gray
-- load arrows: warm color with consistent marker
-
-## Accessibility
-
-- Do not rely on color alone to distinguish meaning
-- Use labels or patterns when categories could be confused
-- Keep contrast strong enough for light backgrounds
-- Prefer short labels over wrapped paragraphs inside the figure
+- Do not let leader lines pass through body text
+- Do not rely on tiny legends or dense footnotes
+- Keep all meaningful text readable without zooming
+- Stop copy before the last safe margin; never let it touch a card edge
+- Design for a single quick glance before the user reads the details

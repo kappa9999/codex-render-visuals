@@ -1,0 +1,31 @@
+[
+  {
+    "id": "house-load-transfer",
+    "title": "House Load Transfer",
+    "mode": "svg",
+    "prompt": "Use $codex-visuals to visualize gravity load transfer in a typical house as a clean structural engineering SVG.",
+    "primary_artifact": "examples/house-load-transfer.svg",
+    "supporting_artifacts": [],
+    "readme_heading": "Engineering SVG: House Load Transfer"
+  },
+  {
+    "id": "api-request-lifecycle",
+    "title": "API Request Lifecycle",
+    "mode": "mmd",
+    "prompt": "Use $codex-visuals to draw an API request lifecycle from browser to database and back as a native Mermaid flowchart.",
+    "primary_artifact": "examples/api-request-lifecycle.mmd",
+    "supporting_artifacts": [
+      "examples/api-request-lifecycle.svg"
+    ],
+    "readme_heading": "Workflow Mermaid: API Request Lifecycle"
+  },
+  {
+    "id": "sqlite-vs-postgres",
+    "title": "SQLite vs PostgreSQL",
+    "mode": "svg",
+    "prompt": "Use $codex-visuals to compare SQLite and PostgreSQL as a clean two-column SVG decision board for engineering teams.",
+    "primary_artifact": "examples/sqlite-vs-postgres.svg",
+    "supporting_artifacts": [],
+    "readme_heading": "Comparison SVG: SQLite vs PostgreSQL"
+  }
+]

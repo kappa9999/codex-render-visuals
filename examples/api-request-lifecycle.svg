@@ -1,86 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="560" viewBox="0 0 1160 560" role="img" aria-labelledby="title desc">
   <title id="title">API request lifecycle</title>
-  <desc id="desc">A README-ready API lifecycle diagram with a clean request lane from browser to database and a separate return path back to the client.</desc>
+  <desc id="desc">A polished request flow showing browser request, API gateway, application service, database access, and response return.</desc>
   <defs>
-    <marker id="arrow-req" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="#c56a05" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
-    <marker id="arrow-res" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="#0f766e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-    <style>
-      .panel { fill: #ffffff; stroke: #e5e7eb; stroke-width: 1.5; }
-      .eyebrow { font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; letter-spacing: 1.1px; fill: #c56a05; }
-      .title { font: 700 22px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #0f172a; }
-      .subtitle { font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #475569; }
-      .lane { font: 700 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; letter-spacing: 0.8px; fill: #64748b; }
-      .chip { font: 700 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; letter-spacing: 0.6px; }
-      .card-title { font: 700 17px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #0f172a; }
-      .card-copy { font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #475569; }
-      .guide { fill: none; stroke: #cbd5e1; stroke-width: 1; stroke-dasharray: 6 6; }
-      .req { fill: none; stroke: #c56a05; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-      .res { fill: none; stroke: #0f766e; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-      .note { font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; fill: #64748b; }
-    </style>
   </defs>
-
-  <rect class="panel" x="14" y="14" width="732" height="392" rx="20"/>
-
-  <text class="eyebrow" x="36" y="42">PUBLIC EXAMPLE</text>
-  <text class="title" x="36" y="78">API request lifecycle</text>
-  <text class="subtitle" x="36" y="102">
-    <tspan x="36" dy="0">Request moves right through edge and app layers.</tspan>
-    <tspan x="36" dy="17">Response returns on a separate lane.</tspan>
+  <rect x="0" y="0" width="1160" height="560" fill="#f6f8fb"/>
+  <rect x="32" y="24" width="1096" height="512" rx="22" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <rect x="32" y="24" width="1096" height="104" rx="22" fill="url(#headerGrad)"/>
+  <rect x="32" y="104" width="1096" height="24" fill="url(#headerGrad)"/>
+  <text x="68" y="74" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#ffffff">API request lifecycle</text>
+  <text x="68" y="100" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#dbe7f8">
+    <tspan x="68" dy="0">Reference SVG for the Codex-native</tspan>
+    <tspan x="68" dy="22">Mermaid and SVG workflow.</tspan>
   </text>
 
-  <rect x="578" y="30" width="74" height="24" rx="12" fill="#fff7ed" stroke="#fcd34d" stroke-width="1"/>
-  <rect x="660" y="30" width="74" height="24" rx="12" fill="#ecfeff" stroke="#99f6e4" stroke-width="1"/>
-  <text class="chip" x="615" y="46" text-anchor="middle" fill="#b45309">REQUEST</text>
-  <text class="chip" x="697" y="46" text-anchor="middle" fill="#0f766e">RESPONSE</text>
+  <rect x="68" y="156" width="1024" height="56" rx="12" fill="#eef4ff" stroke="#d5e2f7" stroke-width="1.5"/>
+  <text x="92" y="190" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#334155">Smoke sample goal</text>
+  <text x="274" y="184" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" fill="#475569">
+    <tspan x="274" dy="0">Exercise layout, card spacing, arrow routing,</tspan>
+    <tspan x="274" dy="20">and a readable return path in one compact artifact.</tspan>
+  </text>
 
-  <text class="lane" x="36" y="134">REQUEST PATH</text>
-  <path class="guide" d="M128 196 H724"/>
+  <rect x="88" y="256" width="190" height="94" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <rect x="336" y="256" width="190" height="94" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <rect x="584" y="256" width="190" height="94" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <rect x="832" y="256" width="190" height="94" rx="16" fill="#eef2f7" stroke="#64748b" stroke-width="2"/>
 
-  <rect x="42" y="146" width="136" height="98" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="1.75"/>
-  <rect x="222" y="146" width="136" height="98" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="1.75"/>
-  <rect x="402" y="146" width="136" height="98" rx="14" fill="#fef3c7" stroke="#d97706" stroke-width="1.75"/>
-  <rect x="582" y="146" width="136" height="98" rx="14" fill="#e5e7eb" stroke="#475569" stroke-width="1.75"/>
+  <text x="183" y="292" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Browser client</text>
+  <text x="183" y="318" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">Sends the request</text>
+  <text x="183" y="338" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">and receives JSON</text>
 
-  <rect x="54" y="158" width="52" height="20" rx="10" fill="#eff6ff"/>
-  <rect x="234" y="158" width="48" height="20" rx="10" fill="#eff6ff"/>
-  <rect x="414" y="158" width="42" height="20" rx="10" fill="#fff7ed"/>
-  <rect x="594" y="158" width="44" height="20" rx="10" fill="#f8fafc"/>
+  <text x="431" y="292" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">API gateway</text>
+  <text x="431" y="318" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">Auth, limits, and</text>
+  <text x="431" y="338" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">routing decisions</text>
 
-  <text class="chip" x="80" y="172" text-anchor="middle" fill="#1d4ed8">CLIENT</text>
-  <text class="chip" x="258" y="172" text-anchor="middle" fill="#1d4ed8">EDGE</text>
-  <text class="chip" x="435" y="172" text-anchor="middle" fill="#b45309">APP</text>
-  <text class="chip" x="616" y="172" text-anchor="middle" fill="#334155">DATA</text>
+  <text x="679" y="292" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Application service</text>
+  <text x="679" y="318" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">Validation, business</text>
+  <text x="679" y="338" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">logic, and response</text>
 
-  <text class="card-title" x="110" y="208" text-anchor="middle">Browser</text>
-  <text class="card-copy" x="110" y="230" text-anchor="middle">originates request</text>
+  <text x="927" y="292" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Primary database</text>
+  <text x="927" y="318" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">Reads or writes</text>
+  <text x="927" y="338" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">persistent state</text>
 
-  <text class="card-title" x="290" y="208" text-anchor="middle">API gateway</text>
-  <text class="card-copy" x="290" y="230" text-anchor="middle">auth + rate limits</text>
+  <path d="M278 303 L336 303" fill="none" stroke="#ea580c" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M526 303 L584 303" fill="none" stroke="#ea580c" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M774 303 L832 303" fill="none" stroke="#ea580c" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
 
-  <text class="card-title" x="470" y="208" text-anchor="middle">Service</text>
-  <text class="card-copy" x="470" y="230" text-anchor="middle">validation + logic</text>
+  <path d="M927 350 L927 412 L679 412" fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M679 438 L431 438 L183 438" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
 
-  <text class="card-title" x="650" y="208" text-anchor="middle">Database</text>
-  <text class="card-copy" x="650" y="230" text-anchor="middle">state read / write</text>
-
-  <path class="req" d="M178 195 H222" marker-end="url(#arrow-req)"/>
-  <path class="req" d="M358 195 H402" marker-end="url(#arrow-req)"/>
-  <path class="req" d="M538 195 H582" marker-end="url(#arrow-req)"/>
-
-  <text class="lane" x="36" y="286">RESPONSE PATH</text>
-  <path class="guide" d="M128 326 H724"/>
-  <path class="res" d="M650 244 V300 H110" marker-end="url(#arrow-res)"/>
-
-  <text class="note" x="664" y="282">rows / ack</text>
-  <text class="note" x="470" y="314" text-anchor="middle">domain result</text>
-  <text class="note" x="292" y="314" text-anchor="middle">status mapping</text>
-  <text class="note" x="110" y="342" text-anchor="middle">json response</text>
-
-  <rect x="42" y="356" width="676" height="30" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <text class="note" x="58" y="375">Separated lanes keep this README diagram readable.</text>
+  <text x="844" y="398" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">query result</text>
+  <text x="458" y="428" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#475569">response path back to the caller</text>
 </svg>

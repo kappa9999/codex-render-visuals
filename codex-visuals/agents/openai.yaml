@@ -1,7 +1,7 @@
 interface:
   display_name: "Codex Visuals"
-  short_description: "Native Mermaid and SVG visuals for Codex"
+  short_description: "Native Mermaid and SVG visual skill for Codex"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
   brand_color: "#D97706"
-  default_prompt: "Use $codex-visuals to turn this explanation into a Mermaid or SVG visual."
+  default_prompt: "Use $codex-visuals to turn this explanation into a native Mermaid or SVG visual."

@@ -15,7 +15,6 @@ REQUIRED_FILES = [
     "references/client-compatibility.md",
     "references/design-system.md",
     "references/diagram-patterns.md",
-    "references/chart-patterns.md",
     "references/quality-checklist.md",
     "scripts/write_visual.py",
     "scripts/validate_svg.py",
@@ -53,8 +52,8 @@ def validate_openai_yaml(text: str) -> list[str]:
     errors: list[str] = []
     required_strings = [
         'display_name: "Codex Visuals"',
-        'short_description: "Native Mermaid and SVG visuals for Codex"',
-        'default_prompt: "Use $codex-visuals to turn this explanation into a Mermaid or SVG visual."',
+        'short_description: "Native Mermaid and SVG visual skill for Codex"',
+        'default_prompt: "Use $codex-visuals to turn this explanation into a native Mermaid or SVG visual."',
     ]
     for value in required_strings:
         if value not in text:

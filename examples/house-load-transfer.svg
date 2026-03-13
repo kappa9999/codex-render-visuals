@@ -1,115 +1,135 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="680" viewBox="0 0 1360 680" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="820" viewBox="0 0 1360 820" role="img" aria-labelledby="title desc">
   <title id="title">House load transfer</title>
-  <desc id="desc">Residential gravity load path from roof and floor framing into a bearing line, then into foundation, footing, and supporting soil.</desc>
+  <desc id="desc">A structural diagram showing gravity loads moving from the roof to rafters, bearing walls, foundation wall, footing, and soil.</desc>
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#ea580c"/>
     </marker>
-    <style>
-      .panel { fill: #ffffff; stroke: #d7dee8; stroke-width: 2; }
-      .title { font: 600 52px "Segoe UI", Arial, sans-serif; fill: #13294b; }
-      .subtitle { font: 400 16px "Segoe UI", Arial, sans-serif; fill: #425466; }
-      .house { fill: #dbeafe; stroke: #2563eb; stroke-width: 3; }
-      .floor { fill: #fef3c7; stroke: #d97706; stroke-width: 3; }
-      .bearing { fill: #fee2e2; stroke: #dc2626; stroke-width: 4; }
-      .foundation { fill: #e5e7eb; stroke: #4b5563; stroke-width: 3; }
-      .soil { fill: #d1fae5; stroke: #059669; stroke-width: 3; }
-      .load { fill: none; stroke: #d97706; stroke-width: 4; stroke-linecap: round; }
-      .leader { fill: none; stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 8 8; }
-      .card { fill: #f8fafc; stroke: #d7dee8; stroke-width: 2; }
-      .badge { fill: #d97706; }
-      .badge-text { font: 700 16px "Segoe UI", Arial, sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
-      .card-title { font: 600 24px "Segoe UI", Arial, sans-serif; fill: #13294b; }
-      .card-body { font: 400 15px "Segoe UI", Arial, sans-serif; fill: #425466; }
-    </style>
+    <style><![CDATA[
+      .page { fill: #f6f8fb; }
+      .shell { fill: #ffffff; stroke: #dbe3ef; stroke-width: 2; }
+      .header { fill: url(#headerGrad); }
+      .title { fill: #ffffff; font: 700 40px "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .subtitle { fill: #dbe7f8; font: 500 21px "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .panel-title { fill: #0f172a; font: 700 23px "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .panel-note { fill: #475569; font: 400 16px "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .stage-label { fill: #334155; font: 700 17px "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .roof { fill: #dbeafe; stroke: #2563eb; stroke-width: 3; }
+      .framing { fill: #eef4ff; stroke: #60a5fa; stroke-width: 2; }
+      .foundation { fill: #d7dee8; stroke: #64748b; stroke-width: 2; }
+      .footing { fill: #cbd5e1; stroke: #475569; stroke-width: 2; }
+      .soil { fill: #f3f0ff; stroke: #c4b5fd; stroke-width: 2; }
+      .soil-hatch { stroke: #c4b5fd; stroke-width: 1.4; }
+      .member { stroke: #2563eb; stroke-width: 2; }
+      .centerline { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 7 8; }
+      .load { stroke: #ea580c; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .callout { fill: #ffffff; stroke: #d1d9e6; stroke-width: 2; }
+      .callout-num { fill: #1d4ed8; font: 700 19px "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .callout-title { fill: #0f172a; font: 700 18px "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .callout-body { fill: #334155; font: 400 14px "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .leader { stroke: #475569; stroke-width: 2.4; fill: none; }
+      .footer-note { fill: #475569; font: 400 14px "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    ]]></style>
   </defs>
 
-  <rect class="panel" x="26" y="20" width="1308" height="640" rx="28"/>
-
-  <text class="title" x="78" y="86">House Load Transfer</text>
-  <text class="subtitle" x="78" y="112">
-    <tspan x="78" dy="0">Gravity path: roof and floor loads collect in framing,</tspan>
-    <tspan x="78" dy="20">move into the bearing line,</tspan>
-    <tspan x="78" dy="20">then spread through footing and soil.</tspan>
+  <rect class="page" x="0" y="0" width="1360" height="820"/>
+  <rect class="header" x="32" y="24" width="1296" height="132" rx="18"/>
+  <text class="title" x="72" y="78">Load Transfer in a Typical House</text>
+  <text class="subtitle" x="72" y="98">
+    <tspan x="72" dy="0">Gravity loads travel from roof framing</tspan>
+    <tspan x="72" dy="24">into bearing walls, foundation,</tspan>
+    <tspan x="72" dy="24">footing, and soil.</tspan>
   </text>
 
-  <polygon class="house" points="180,278 360,188 540,278 505,278 360,220 215,278"/>
-  <polyline class="house" points="216,278 360,242 504,278" fill="none"/>
-  <rect class="house" x="220" y="278" width="30" height="168" rx="7"/>
-  <rect class="house" x="490" y="278" width="30" height="168" rx="7"/>
-  <rect class="floor" x="240" y="390" width="270" height="30" rx="7"/>
-  <rect class="bearing" x="346" y="292" width="28" height="170" rx="12"/>
-  <rect class="foundation" x="326" y="462" width="68" height="78" rx="14"/>
-  <rect class="foundation" x="268" y="536" width="184" height="18" rx="9"/>
-  <rect class="soil" x="178" y="548" width="364" height="10" rx="5"/>
+  <rect class="shell" x="44" y="160" width="1272" height="632" rx="18"/>
+  <rect class="shell" x="72" y="186" width="728" height="540" rx="14"/>
+  <text class="panel-title" x="98" y="224">Structural Schematic</text>
+  <text class="panel-note" x="98" y="248">Residential load-path concept section</text>
 
-  <path class="load" d="M250 146 L250 178" marker-end="url(#arrow)"/>
-  <path class="load" d="M360 136 L360 178" marker-end="url(#arrow)"/>
-  <path class="load" d="M470 146 L470 178" marker-end="url(#arrow)"/>
-  <path class="load" d="M264 316 L264 384" marker-end="url(#arrow)"/>
-  <path class="load" d="M454 316 L454 384" marker-end="url(#arrow)"/>
-  <path class="load" d="M360 424 L360 458" marker-end="url(#arrow)"/>
-  <path class="load" d="M360 510 L360 532" marker-end="url(#arrow)"/>
-  <path class="load" d="M360 540 L360 546" marker-end="url(#arrow)"/>
+  <text class="stage-label" x="118" y="286">Roof load</text>
+  <text class="stage-label" x="118" y="358">Rafters / trusses</text>
+  <text class="stage-label" x="118" y="502">Bearing walls</text>
+  <text class="stage-label" x="118" y="620">Foundation wall</text>
+  <text class="stage-label" x="118" y="700">Footing</text>
 
-  <path class="leader" d="M540 216 L640 216 L700 195"/>
-  <path class="leader" d="M505 278 L640 278 L700 277"/>
-  <path class="leader" d="M510 404 L640 404 L700 359"/>
-  <path class="leader" d="M374 350 L612 350 L612 441 L700 441"/>
-  <path class="leader" d="M452 545 L640 545 L700 523"/>
+  <polygon class="roof" points="220,382 400,240 580,382"/>
+  <line class="member" x1="400" y1="240" x2="400" y2="382"/>
+  <line class="member" x1="310" y1="310" x2="310" y2="382"/>
+  <line class="member" x1="490" y1="310" x2="490" y2="382"/>
 
-  <g>
-    <rect class="card" x="700" y="164" width="580" height="62" rx="16"/>
-    <circle class="badge" cx="744" cy="195" r="18"/>
-    <text class="badge-text" x="744" y="195">1</text>
-    <text class="card-title" x="786" y="190">Roof surface load</text>
-    <text class="card-body" x="786" y="208">
-      <tspan x="786" dy="0">Dead, snow, and maintenance loads</tspan>
-      <tspan x="786" dy="16">enter the roof plane.</tspan>
-    </text>
-  </g>
+  <rect class="framing" x="290" y="382" width="220" height="126" rx="8"/>
+  <line class="member" x1="308" y1="382" x2="308" y2="508"/>
+  <line class="member" x1="338" y1="382" x2="338" y2="508"/>
+  <line class="member" x1="368" y1="382" x2="368" y2="508"/>
+  <line class="member" x1="398" y1="382" x2="398" y2="508"/>
+  <line class="member" x1="428" y1="382" x2="428" y2="508"/>
+  <line class="member" x1="458" y1="382" x2="458" y2="508"/>
+  <line class="member" x1="488" y1="382" x2="488" y2="508"/>
 
-  <g>
-    <rect class="card" x="700" y="246" width="580" height="62" rx="16"/>
-    <circle class="badge" cx="744" cy="277" r="18"/>
-    <text class="badge-text" x="744" y="277">2</text>
-    <text class="card-title" x="786" y="272">Roof framing</text>
-    <text class="card-body" x="786" y="290">
-      <tspan x="786" dy="0">Rafters or trusses collect load</tspan>
-      <tspan x="786" dy="16">and route it to supports.</tspan>
-    </text>
-  </g>
+  <rect class="foundation" x="300" y="508" width="200" height="120" rx="8"/>
+  <rect class="footing" x="258" y="628" width="284" height="32" rx="7"/>
+  <rect class="soil" x="208" y="660" width="384" height="56" rx="9"/>
+  <line class="soil-hatch" x1="228" y1="678" x2="572" y2="678"/>
+  <line class="soil-hatch" x1="228" y1="694" x2="572" y2="694"/>
+  <line class="soil-hatch" x1="228" y1="710" x2="572" y2="710"/>
 
-  <g>
-    <rect class="card" x="700" y="328" width="580" height="62" rx="16"/>
-    <circle class="badge" cx="744" cy="359" r="18"/>
-    <text class="badge-text" x="744" y="359">3</text>
-    <text class="card-title" x="786" y="354">Floor framing</text>
-    <text class="card-body" x="786" y="372">
-      <tspan x="786" dy="0">Joists and subfloor carry tributary</tspan>
-      <tspan x="786" dy="16">floor loads to the bearing line.</tspan>
-    </text>
-  </g>
+  <line class="centerline" x1="400" y1="240" x2="400" y2="716"/>
 
-  <g>
-    <rect class="card" x="700" y="410" width="580" height="62" rx="16"/>
-    <circle class="badge" cx="744" cy="441" r="18"/>
-    <text class="badge-text" x="744" y="441">4</text>
-    <text class="card-title" x="786" y="436">Bearing wall or beam line</text>
-    <text class="card-body" x="786" y="454">
-      <tspan x="786" dy="0">The concentrated reaction travels</tspan>
-      <tspan x="786" dy="16">down the main vertical support.</tspan>
-    </text>
-  </g>
+  <path class="load" d="M400 184 L400 232"/>
+  <path class="load" d="M310 258 L310 320"/>
+  <path class="load" d="M490 258 L490 320"/>
+  <path class="load" d="M330 392 L330 452"/>
+  <path class="load" d="M470 392 L470 452"/>
+  <path class="load" d="M400 514 L400 592"/>
 
-  <g>
-    <rect class="card" x="700" y="492" width="580" height="62" rx="16"/>
-    <circle class="badge" cx="744" cy="523" r="18"/>
-    <text class="badge-text" x="744" y="523">5</text>
-    <text class="card-title" x="786" y="518">Foundation, footing, and soil</text>
-    <text class="card-body" x="786" y="536">
-      <tspan x="786" dy="0">Footing spread keeps bearing pressure</tspan>
-      <tspan x="786" dy="16">within soil capacity.</tspan>
-    </text>
-  </g>
+  <rect class="callout" x="844" y="204" width="440" height="92" rx="12"/>
+  <text class="callout-num" x="868" y="242">1</text>
+  <text class="callout-title" x="902" y="242">Roof Surface Loads</text>
+  <text class="callout-body" x="902" y="258">
+    <tspan x="902" dy="0">Roof sheathing receives dead load</tspan>
+    <tspan x="902" dy="18">and environmental live load.</tspan>
+  </text>
+
+  <rect class="callout" x="844" y="314" width="440" height="92" rx="12"/>
+  <text class="callout-num" x="868" y="352">2</text>
+  <text class="callout-title" x="902" y="352">Rafter / Truss Transfer</text>
+  <text class="callout-body" x="902" y="368">
+    <tspan x="902" dy="0">Framing converts surface load</tspan>
+    <tspan x="902" dy="18">into reactions at bearing lines.</tspan>
+  </text>
+
+  <rect class="callout" x="844" y="424" width="440" height="92" rx="12"/>
+  <text class="callout-num" x="868" y="462">3</text>
+  <text class="callout-title" x="902" y="462">Wall Compression Path</text>
+  <text class="callout-body" x="902" y="478">
+    <tspan x="902" dy="0">Stud walls carry axial load</tspan>
+    <tspan x="902" dy="18">downward with minimal eccentricity.</tspan>
+  </text>
+
+  <rect class="callout" x="844" y="534" width="440" height="92" rx="12"/>
+  <text class="callout-num" x="868" y="572">4</text>
+  <text class="callout-title" x="902" y="572">Foundation Reaction</text>
+  <text class="callout-body" x="902" y="588">
+    <tspan x="902" dy="0">The foundation wall channels load</tspan>
+    <tspan x="902" dy="18">into the continuous footing.</tspan>
+  </text>
+
+  <rect class="callout" x="844" y="644" width="440" height="92" rx="12"/>
+  <text class="callout-num" x="868" y="682">5</text>
+  <text class="callout-title" x="902" y="682">Soil Bearing</text>
+  <text class="callout-body" x="902" y="698">
+    <tspan x="902" dy="0">The footing spreads force so soil</tspan>
+    <tspan x="902" dy="18">pressure stays within limits.</tspan>
+  </text>
+
+  <path class="leader" d="M580 258 L844 258"/>
+  <path class="leader" d="M528 338 L844 338"/>
+  <path class="leader" d="M520 462 L844 462"/>
+  <path class="leader" d="M500 572 L844 572"/>
+  <path class="leader" d="M592 682 L844 682"/>
+
 </svg>
