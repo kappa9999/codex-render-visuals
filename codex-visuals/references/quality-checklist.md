@@ -14,6 +14,7 @@ Run this checklist before sending a user-facing visual.
 
 - title is concise
 - labels are readable at normal chat width
+- long callouts are wrapped into short lines instead of one clipped sentence
 - color count is limited
 - the main subject is obvious within one second
 - whitespace is sufficient
@@ -32,4 +33,5 @@ Run this checklist before sending a user-facing visual.
 - quick validation passes
 - smoke render passes
 - example outputs are current
+- PNG fallbacks are regenerated from SVG with `scripts/export_svg_png.py`
 - README screenshots match current behavior

@@ -71,11 +71,13 @@ For process visuals:
 
 - Evenly space primary nodes
 - Keep connector bends orthogonal when direct lines would cross boxes
+- Prefer compact height so the figure still reads cleanly when scaled in a README or chat transcript
 
 ## Label Rules
 
 - Prefer short noun phrases
 - Explanations belong in callouts, not inside core geometry
+- Wrap callout copy into short stacked lines when one sentence would run wider than the available column
 - Every leader line must terminate clearly
 - Every arrow should encode one meaning only
 

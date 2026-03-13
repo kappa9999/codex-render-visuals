@@ -20,6 +20,37 @@ def local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
 
 
+def parse_font_size(element: ET.Element) -> float:
+    raw = element.attrib.get("font-size")
+    if raw:
+        try:
+            return float(str(raw).replace("px", "").strip())
+        except ValueError:
+            pass
+    style = element.attrib.get("style", "")
+    match = re.search(r"font-size\s*:\s*([0-9.]+)px", style)
+    if match:
+        return float(match.group(1))
+    return 14.0
+
+
+def approximate_text_width(text: str, font_size: float) -> float:
+    return len(text) * font_size * 0.56
+
+
+def iter_text_lines(element: ET.Element) -> list[str]:
+    tspans = [child for child in element if local_name(child.tag) == "tspan"]
+    if tspans:
+        lines = []
+        for child in tspans:
+            line = "".join(child.itertext()).strip()
+            if line:
+                lines.append(line)
+        return lines
+    line = "".join(element.itertext()).strip()
+    return [line] if line else []
+
+
 def validate_svg_file(path: Path) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
@@ -47,6 +78,7 @@ def validate_svg_file(path: Path) -> tuple[list[str], list[str]]:
     if local_name(root.tag) != "svg":
         errors.append("root element is not <svg>")
 
+    viewbox_width: float | None = None
     if not root.attrib.get("viewBox"):
         errors.append("missing viewBox attribute")
     else:
@@ -62,6 +94,8 @@ def validate_svg_file(path: Path) -> tuple[list[str], list[str]]:
             else:
                 if width <= 0 or height <= 0:
                     errors.append("viewBox width and height must be positive")
+                else:
+                    viewbox_width = width
 
     if root.find(f"{SVG_NAMESPACE}title") is None and root.find("title") is None:
         errors.append("missing <title>")
@@ -75,6 +109,30 @@ def validate_svg_file(path: Path) -> tuple[list[str], list[str]]:
             errors.append(f"disallowed tag <{name}> present")
         if name == "text":
             text_nodes += 1
+            if viewbox_width is not None and "x" in element.attrib:
+                try:
+                    x = float(element.attrib["x"])
+                except ValueError:
+                    x = None
+                if x is not None:
+                    font_size = parse_font_size(element)
+                    anchor = element.attrib.get("text-anchor", "start").lower()
+                    for line in iter_text_lines(element):
+                        estimated_width = approximate_text_width(line, font_size)
+                        if anchor == "middle":
+                            right_edge = x + estimated_width / 2
+                        elif anchor == "end":
+                            right_edge = x
+                        else:
+                            right_edge = x + estimated_width
+                        if right_edge > viewbox_width - 12:
+                            warnings.append(
+                                f"text may overflow right edge: '{line[:48]}'"
+                            )
+                        if len(line) > 54:
+                            warnings.append(
+                                f"text line is unusually long and may need wrapping: '{line[:48]}'"
+                            )
 
         for key, value in element.attrib.items():
             normalized_key = key.lower()

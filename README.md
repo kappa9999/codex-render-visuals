@@ -7,7 +7,7 @@ Production-ready SVG diagrams for Codex-compatible clients.
 ## Highlights
 
 - Lean, production-oriented Codex skill under `codex-visuals/`
-- SVG-first output with PNG fallback for compatibility-sensitive clients
+- SVG-first output with scripted PNG fallbacks for compatibility-sensitive clients
 - Built-in validation, smoke rendering, install helpers, and example artifacts
 - Designed around what Codex desktop reliably supports today
 
@@ -99,7 +99,7 @@ Visualize load transfer in a house for a structural engineering explanation.
 
 Rendered sample:
 
-![House load transfer example](examples/house-load-transfer.png)
+![House load transfer example](examples/house-load-transfer.svg)
 
 Second sample:
 
@@ -109,7 +109,7 @@ Use $codex-visuals to draw a flowchart of an API request lifecycle from browser 
 
 Rendered sample:
 
-![API request lifecycle example](examples/api-request-lifecycle.png)
+![API request lifecycle example](examples/api-request-lifecycle.svg)
 
 Included artifacts:
 
@@ -123,8 +123,9 @@ Included artifacts:
 
 1. `codex-visuals/SKILL.md` stays lean and procedural so the skill triggers correctly.
 2. Detailed guidance lives in `codex-visuals/references/`.
-3. Deterministic helpers in `codex-visuals/scripts/` handle output path creation, SVG validation, smoke rendering, and install helpers.
+3. Deterministic helpers in `codex-visuals/scripts/` handle output path creation, SVG validation, smoke rendering, PNG export, and install helpers.
 4. The final user-visible output is a standard Markdown image, not a custom renderer.
+5. PNG fallbacks are regenerated from SVG source files with a Chrome-based export script instead of manual screenshots.
 
 ## Repository Layout
 
@@ -148,12 +149,19 @@ python codex-visuals/scripts/render_smoke_svg.py --output-dir ./tmp/smoke
 pytest
 ```
 
+To refresh PNG fallbacks from the SVG source of truth:
+
+```bash
+python codex-visuals/scripts/export_svg_png.py examples/house-load-transfer.svg examples/api-request-lifecycle.svg
+```
+
 Release bar:
 
 - Fresh install succeeds into a clean `~/.codex/skills` directory
 - At least one real prompt renders correctly in Codex desktop
 - Validation scripts pass
 - Example screenshots and sample artifacts are current
+- PNG fallbacks are regenerated from the current SVG sources
 
 ## Limitations
 
