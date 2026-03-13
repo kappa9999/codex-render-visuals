@@ -169,7 +169,7 @@ To print a Mermaid fence while also writing a deterministic `.mmd` artifact:
 python codex-visuals/scripts/write_visual.py --slug api-request-lifecycle --format mmd --source-file ./examples/api-request-lifecycle.mmd --print-fence
 ```
 
-To refresh PNG fallbacks from the SVG source of truth:
+To refresh PNG fallbacks for published docs from the SVG source of truth:
 
 ```bash
 python codex-visuals/scripts/export_svg_png.py examples/house-load-transfer.svg examples/api-request-lifecycle.svg

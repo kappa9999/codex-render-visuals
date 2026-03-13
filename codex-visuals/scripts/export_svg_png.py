@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export standalone SVG files to PNG with headless Chrome or Chromium."""
+"""Optional docs-publishing helper for exporting standalone SVG files to PNG."""
 
 from __future__ import annotations
 
