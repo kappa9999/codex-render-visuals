@@ -97,10 +97,6 @@ Prompt:
 Visualize load transfer in a house for a structural engineering explanation.
 ```
 
-Rendered sample:
-
-![House load transfer example](examples/house-load-transfer.svg)
-
 Second sample:
 
 ```text
@@ -118,10 +114,6 @@ flowchart LR
   service --> gateway
   gateway --> browser_response["Browser<br/>JSON response"]
 ```
-
-Reference SVG artifact:
-
-![API request lifecycle example](examples/api-request-lifecycle.svg)
 
 Included artifacts:
 
