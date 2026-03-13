@@ -18,6 +18,7 @@ Run this checklist before sending a user-facing visual.
 - color count is limited
 - the main subject is obvious within one second
 - whitespace is sufficient
+- the title band is visually clear, with no arrows or geometry competing with the heading copy
 - arrows and leader lines do not create confusion
 
 ## Communication

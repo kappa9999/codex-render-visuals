@@ -99,7 +99,7 @@ Visualize load transfer in a house for a structural engineering explanation.
 
 Rendered sample:
 
-![House load transfer example](examples/house-load-transfer.svg)
+[![House load transfer example](examples/house-load-transfer.png)](examples/house-load-transfer.svg)
 
 Second sample:
 
@@ -109,7 +109,7 @@ Use $codex-visuals to draw a flowchart of an API request lifecycle from browser 
 
 Rendered sample:
 
-![API request lifecycle example](examples/api-request-lifecycle.svg)
+[![API request lifecycle example](examples/api-request-lifecycle.png)](examples/api-request-lifecycle.svg)
 
 Included artifacts:
 

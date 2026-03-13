@@ -44,10 +44,12 @@ Avoid gradients, shadows, blur, glow, textures, and glassmorphism.
 ## Layout
 
 - Give the visual a 32px to 48px safe margin
+- Reserve a clear title band at the top; arrows, leaders, and geometry should not pass through title or subtitle copy
 - Keep the main subject on the left or center, callouts on one side
 - Leave enough whitespace between callouts to read each one independently
 - Avoid crossing arrows whenever possible
 - Prefer one clear reading direction
+- Scale for README width first, then add detail only if it still reads cleanly when reduced
 
 ## SVG Structure
 

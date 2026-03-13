@@ -65,6 +65,7 @@ For a single subject with callouts:
 - Main geometry: left 55 percent
 - Callouts: right 45 percent
 - Title at top
+- Keep a dedicated header zone so decorative arrows never pass behind the title or subtitle
 - Summary note at bottom only if it adds value
 
 For process visuals:
@@ -80,6 +81,7 @@ For process visuals:
 - Wrap callout copy into short stacked lines when one sentence would run wider than the available column
 - Every leader line must terminate clearly
 - Every arrow should encode one meaning only
+- If the figure becomes crowded, remove decorative arrows before shrinking text
 
 ## Common Failure Modes
 
