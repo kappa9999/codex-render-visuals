@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620" role="img" aria-labelledby="title desc">
+  <title id="title">Residential gravity load transfer diagram</title>
+  <desc id="desc">Simplified section showing roof and floor loads transferring through a bearing wall and foundation into soil.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .title { font: 600 28px "Segoe UI", Arial, sans-serif; fill: #1f2937; }
+      .subtitle { font: 400 15px "Segoe UI", Arial, sans-serif; fill: #4b5563; }
+      .label { font: 600 18px "Segoe UI", Arial, sans-serif; fill: #1f2937; }
+      .small { font: 400 14px "Segoe UI", Arial, sans-serif; fill: #4b5563; }
+      .load { fill: none; stroke: #d97706; stroke-width: 3; stroke-linecap: round; }
+      .leader { fill: none; stroke: #9ca3af; stroke-width: 1.5; stroke-dasharray: 6 6; }
+      .roof { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; }
+      .framing { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+      .bearing { fill: #fee2e2; stroke: #dc2626; stroke-width: 2.5; }
+      .foundation { fill: #e5e7eb; stroke: #4b5563; stroke-width: 2; }
+      .soil { fill: #d1fae5; stroke: #059669; stroke-width: 2; }
+      .bg { fill: #ffffff; stroke: #e5e7eb; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="16" y="16" width="928" height="588" rx="18"/>
+
+  <text class="title" x="42" y="56">House Load Transfer</text>
+  <text class="subtitle" x="42" y="84">Conceptual gravity load path: roof and floor loads move through framing, into a bearing line, then through the footing into soil.</text>
+
+  <polygon class="roof" points="180,180 340,95 500,180 470,180 340,120 210,180"/>
+  <rect class="roof" x="215" y="180" width="20" height="165" rx="4"/>
+  <rect class="roof" x="445" y="180" width="20" height="165" rx="4"/>
+  <rect class="framing" x="225" y="260" width="230" height="24" rx="4"/>
+
+  <rect class="bearing" x="330" y="185" width="22" height="160" rx="8"/>
+  <rect class="foundation" x="318" y="345" width="46" height="88" rx="8"/>
+  <rect class="foundation" x="270" y="433" width="142" height="20" rx="8"/>
+  <rect class="soil" x="170" y="472" width="342" height="42" rx="12"/>
+
+  <path class="load" d="M260 56 L260 128" marker-end="url(#arrow)"/>
+  <path class="load" d="M340 42 L340 96" marker-end="url(#arrow)"/>
+  <path class="load" d="M420 56 L420 128" marker-end="url(#arrow)"/>
+  <path class="load" d="M250 205 L250 256" marker-end="url(#arrow)"/>
+  <path class="load" d="M430 205 L430 256" marker-end="url(#arrow)"/>
+  <path class="load" d="M341 288 L341 340" marker-end="url(#arrow)"/>
+  <path class="load" d="M341 392 L341 430" marker-end="url(#arrow)"/>
+  <path class="load" d="M341 452 L341 468" marker-end="url(#arrow)"/>
+
+  <path class="leader" d="M500 124 L610 124 L655 106"/>
+  <path class="leader" d="M470 181 L610 181 L655 181"/>
+  <path class="leader" d="M456 272 L610 272 L655 272"/>
+  <path class="leader" d="M352 305 L610 305 L655 305"/>
+  <path class="leader" d="M364 388 L610 388 L655 388"/>
+  <path class="leader" d="M512 493 L610 493 L655 493"/>
+
+  <text class="label" x="675" y="108">Roof surface load</text>
+  <text class="small" x="675" y="132">Dead load plus snow or live load on the roof sheathing.</text>
+
+  <text class="label" x="675" y="183">Roof framing</text>
+  <text class="small" x="675" y="207">Rafters or trusses gather the surface load and deliver it to supports.</text>
+
+  <text class="label" x="675" y="274">Floor framing</text>
+  <text class="small" x="675" y="298">Joists and subfloor transfer tributary floor load into the bearing line.</text>
+
+  <text class="label" x="675" y="307">Bearing wall or beam line</text>
+  <text class="small" x="675" y="331">The vertical load path concentrates here before entering the foundation.</text>
+
+  <text class="label" x="675" y="390">Foundation wall or pier</text>
+  <text class="small" x="675" y="414">Concrete element carries the reaction downward without overstressing the wall above.</text>
+
+  <text class="label" x="675" y="495">Footing and soil</text>
+  <text class="small" x="675" y="519">The footing spreads the force so the bearing pressure stays within soil capacity.</text>
+
+  <text class="label" x="42" y="566">Design note</text>
+  <text class="small" x="136" y="566">Actual load paths depend on framing direction, openings, collectors, uplift, and lateral systems. This is a conceptual gravity-only sketch.</text>
+</svg>

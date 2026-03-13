@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Codex Visuals icon</title>
+  <desc id="desc">Three diagram blocks connected by orange arrows on a white rounded square.</desc>
+  <rect x="16" y="16" width="224" height="224" rx="40" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="8"/>
+  <rect x="44" y="58" width="68" height="44" rx="12" fill="#DBEAFE" stroke="#2563EB" stroke-width="6"/>
+  <rect x="144" y="58" width="68" height="44" rx="12" fill="#FEE2E2" stroke="#DC2626" stroke-width="6"/>
+  <rect x="94" y="150" width="68" height="44" rx="12" fill="#E5E7EB" stroke="#4B5563" stroke-width="6"/>
+  <path d="M112 80 L144 80" fill="none" stroke="#D97706" stroke-width="8" stroke-linecap="round"/>
+  <path d="M128 102 L128 140" fill="none" stroke="#D97706" stroke-width="8" stroke-linecap="round"/>
+  <path d="M136 80 L144 80 L136 74" fill="none" stroke="#D97706" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M128 132 L128 140 L122 132" fill="none" stroke="#D97706" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

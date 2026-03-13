@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codex-render-visuals"
+version = "0.1.0"
+description = "Tooling and tests for the codex-visuals public Codex skill."
+requires-python = ">=3.10"
+readme = "README.md"
+dependencies = [
+  "PyYAML>=6,<7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9",
+]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[project.urls]
+Homepage = "https://github.com/kappa9999/codex-render-visuals"
+Repository = "https://github.com/kappa9999/codex-render-visuals"
