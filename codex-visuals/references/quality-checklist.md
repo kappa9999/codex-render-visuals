@@ -34,5 +34,4 @@ Run this checklist before sending a user-facing visual.
 - quick validation passes
 - smoke render passes
 - example outputs are current
-- PNG fallbacks are regenerated from SVG with `scripts/export_svg_png.py`
 - README screenshots match current behavior

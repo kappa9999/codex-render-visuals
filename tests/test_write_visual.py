@@ -57,3 +57,26 @@ def test_write_visual_rejects_print_fence_for_non_mermaid(tmp_path: Path) -> Non
 
     assert result.returncode == 2
     assert "--print-fence only supports mmd or mermaid outputs" in result.stderr
+
+
+def test_write_visual_rejects_png_format(tmp_path: Path) -> None:
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(WRITE_VISUAL),
+            "--slug",
+            "diagram",
+            "--format",
+            "png",
+            "--output-dir",
+            str(tmp_path),
+        ],
+        cwd=REPO_ROOT,
+        input="not-used\n",
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 2
+    assert "unsupported format for v1" in result.stderr

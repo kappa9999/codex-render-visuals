@@ -1,24 +1,22 @@
 # Example prompts
 
-Use these prompts to verify that `codex-visuals` chooses a sensible native output mode before falling back to image artifacts.
+Use these prompts to verify that `codex-visuals` chooses a sensible native output mode without introducing a raster step.
 
 ## 1. Structural explanation
 
 Prompt:
 
 ```text
-Use $codex-visuals to visualize load transfer in a house as a production SVG diagram with a PNG fallback only if the target surface needs one.
+Use $codex-visuals to visualize load transfer in a house as a production SVG diagram.
 ```
 
 Expected mode:
 
 - Primary: standalone SVG embedded as a Markdown image
-- Fallback: PNG for publishing or compatibility-only cases
 
 Expected artifact:
 
 - `examples/house-load-transfer.svg`
-- `examples/house-load-transfer.png`
 
 ## 2. Process flow
 
@@ -37,7 +35,6 @@ Expected artifact:
 
 - `examples/api-request-lifecycle.mmd`
 - `examples/api-request-lifecycle.svg`
-- `examples/api-request-lifecycle.png`
 - A single annotated diagram with arrows, retries if relevant, and clear failure/response branches
 
 ## 3. Comparison layout
@@ -51,7 +48,6 @@ Use $codex-visuals to compare slab-on-grade versus crawlspace foundations for an
 Expected mode:
 
 - SVG comparison board
-- PNG fallback when typography or SVG rendering is inconsistent
 
 Expected artifact:
 
@@ -59,7 +55,7 @@ Expected artifact:
 
 ## Review checklist
 
-- The output is embedded as an image, not a custom fence.
+- The output is Mermaid or SVG, not a raster screenshot.
 - Labels are readable at normal chat width.
 - The diagram has an obvious title, hierarchy, and margins.
 - There is no clipped content or overlapping annotation text.

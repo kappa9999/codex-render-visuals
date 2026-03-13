@@ -13,3 +13,4 @@ build/
 tmp/
 out/
 render-output/
+examples/*.png

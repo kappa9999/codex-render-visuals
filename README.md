@@ -1,14 +1,14 @@
 # codex-render-visuals
 
-Production-ready SVG diagrams for Codex-compatible clients.
+Production-ready Mermaid and SVG visuals for Codex-compatible clients.
 
-`codex-render-visuals` packages the `codex-visuals` skill: a native-first workflow for generating Mermaid or SVG visuals that render cleanly in Codex-compatible clients, with PNGs reserved for publishing and compatibility fallbacks.
+`codex-render-visuals` packages the `codex-visuals` skill: a native-first workflow for generating Mermaid or SVG visuals that render cleanly in Codex-compatible clients without a browser-based export step.
 
 ## Highlights
 
 - Lean, production-oriented Codex skill under `codex-visuals/`
 - Native Codex path: Mermaid for flows, SVG for precise geometry
-- No browser dependency required for normal Codex desktop use
+- No browser or rasterizer dependency required for normal Codex desktop use
 - Built-in validation, smoke rendering, install helpers, and example artifacts
 - Designed around what Codex desktop reliably supports today
 
@@ -18,7 +18,6 @@ Production-ready SVG diagrams for Codex-compatible clients.
 | --- | --- | --- |
 | Mermaid fence | Supported in native Codex-style surfaces and GitHub | Primary flow/workflow mode |
 | Markdown image tag to local SVG | Expected in Codex-compatible clients | Primary precision / engineering mode |
-| Markdown image tag to local PNG | Supported | Publishing and compatibility fallback |
 | Raw HTML widgets / iframe visuals | Not a public guarantee | Out of scope for v1 |
 | Custom `visualizer` fence | Unsupported in current Codex desktop builds | Not used by this repo |
 
@@ -85,10 +84,10 @@ Use $codex-visuals to visualize load transfer in a house as a clean SVG diagram 
 Expected result:
 
 - The skill chooses the lightest native output mode that fits the request
-- It writes a standalone SVG artifact
+- It writes a standalone SVG artifact when precise layout is needed
 - It emits Mermaid directly for simple flows when that is the cleaner Codex-native option
 - It validates SVGs before embedding them as images
-- It only falls back to PNG for publishing or compatibility-sensitive surfaces
+- It stays on Mermaid or SVG for v1 instead of invoking a raster export step
 
 ## Example Outputs
 
@@ -100,7 +99,7 @@ Visualize load transfer in a house for a structural engineering explanation.
 
 Rendered sample:
 
-[![House load transfer example](examples/house-load-transfer.png)](examples/house-load-transfer.svg)
+![House load transfer example](examples/house-load-transfer.svg)
 
 Second sample:
 
@@ -120,26 +119,24 @@ flowchart LR
   gateway --> browser_response["Browser<br/>JSON response"]
 ```
 
-Published image artifact:
+Reference SVG artifact:
 
-[![API request lifecycle example](examples/api-request-lifecycle.png)](examples/api-request-lifecycle.svg)
+![API request lifecycle example](examples/api-request-lifecycle.svg)
 
 Included artifacts:
 
 - [examples/house-load-transfer.svg](examples/house-load-transfer.svg)
-- [examples/house-load-transfer.png](examples/house-load-transfer.png)
 - [examples/api-request-lifecycle.mmd](examples/api-request-lifecycle.mmd)
 - [examples/api-request-lifecycle.svg](examples/api-request-lifecycle.svg)
-- [examples/api-request-lifecycle.png](examples/api-request-lifecycle.png)
 - [examples/prompts.md](examples/prompts.md)
 
 ## How It Works
 
 1. `codex-visuals/SKILL.md` stays lean and procedural so the skill triggers correctly.
 2. Detailed guidance lives in `codex-visuals/references/`.
-3. Deterministic helpers in `codex-visuals/scripts/` handle output path creation, Mermaid fencing, SVG validation, smoke rendering, PNG export, and install helpers.
-4. Runtime output in Codex desktop stays native-first: Mermaid fence or SVG image before PNG.
-5. PNG fallbacks exist for publishing and compatibility, not as the default Codex runtime path.
+3. Deterministic helpers in `codex-visuals/scripts/` handle output path creation, Mermaid fencing, SVG validation, smoke rendering, and install helpers.
+4. Runtime output in Codex desktop stays native-first: Mermaid fence or SVG image.
+5. v1 intentionally avoids a raster-export dependency in the core path.
 
 ## Repository Layout
 
@@ -169,26 +166,20 @@ To print a Mermaid fence while also writing a deterministic `.mmd` artifact:
 python codex-visuals/scripts/write_visual.py --slug api-request-lifecycle --format mmd --source-file ./examples/api-request-lifecycle.mmd --print-fence
 ```
 
-To refresh PNG fallbacks for published docs from the SVG source of truth:
-
-```bash
-python codex-visuals/scripts/export_svg_png.py examples/house-load-transfer.svg examples/api-request-lifecycle.svg
-```
-
 Release bar:
 
 - Fresh install succeeds into a clean `~/.codex/skills` directory
 - At least one real prompt renders correctly in Codex desktop
 - Validation scripts pass
 - Example screenshots and sample artifacts are current
-- PNG fallbacks are regenerated from the current SVG sources
+- Native Mermaid and SVG paths stay dependency-light
 
 ## Limitations
 
 - This repository does not depend on a custom `visualizer` fence
 - Interactive HTML widgets are intentionally out of scope for v1
 - Mermaid should still be kept to graph-style diagrams, not dense engineering sections
-- PNG export is a publishing fallback, not the authoring source of truth
+- Raster export is intentionally out of scope for v1
 
 ## Development
 

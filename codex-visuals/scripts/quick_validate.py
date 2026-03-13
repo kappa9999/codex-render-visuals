@@ -53,8 +53,8 @@ def validate_openai_yaml(text: str) -> list[str]:
     errors: list[str] = []
     required_strings = [
         'display_name: "Codex Visuals"',
-        'short_description: "Production SVG visuals for Codex"',
-        'default_prompt: "Use $codex-visuals to turn this explanation into a clean SVG diagram."',
+        'short_description: "Native Mermaid and SVG visuals for Codex"',
+        'default_prompt: "Use $codex-visuals to turn this explanation into a Mermaid or SVG visual."',
     ]
     for value in required_strings:
         if value not in text:

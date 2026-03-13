@@ -4,23 +4,22 @@ Use this file first to choose a rendering mode that the current client can actua
 
 ## Capability Ladder
 
-1. Standalone SVG file embedded with a Markdown image tag
-2. Mermaid fence for simple graphs when Mermaid support is known
-3. PNG file embedded with a Markdown image tag
-4. Raw source only when the user explicitly asks for source
+1. Mermaid fence for simple graphs and workflows
+2. Standalone SVG file embedded with a Markdown image tag
+3. Raw source only when the user explicitly asks for source
 
 Default to the highest reliable rung, not the fanciest one.
 
 ## Codex Desktop
 
-Codex desktop should be treated as native-text-plus-image first.
+Codex desktop should be treated as native Mermaid plus SVG first.
 
 - Best primary path for flows: Mermaid fence
 - Best primary path for precise layouts: Markdown image tag to a local absolute SVG path
-- Safe publishing fallback artifact: PNG
 - Mermaid: preferred for simple flows and graphs in Codex desktop
 - Custom fences such as `visualizer`: unsupported by default
 - HTML widgets and iframe-based interactivity: do not assume support
+- Raster export is outside the v1 runtime contract for this repo
 
 ## Output Rules By Mode
 
@@ -38,16 +37,6 @@ Requirements:
 - embedded fonts avoided
 - `title`, `desc`, `viewBox`
 - no external `href`, `script`, or `foreignObject`
-
-### PNG + Markdown image
-
-Use when:
-
-- SVG rendering looks off
-- you need a compatibility-first response
-- you want the exact appearance frozen
-
-Keep the SVG source alongside the PNG whenever possible.
 
 ### Mermaid
 

@@ -36,7 +36,6 @@ def test_public_skill_layout_exists() -> None:
         SKILL_DIR / "scripts" / "quick_validate.py",
         SKILL_DIR / "scripts" / "render_smoke_svg.py",
         SKILL_DIR / "scripts" / "validate_svg.py",
-        SKILL_DIR / "scripts" / "export_svg_png.py",
         SKILL_DIR / "references" / "client-compatibility.md",
         SKILL_DIR / "references" / "design-system.md",
         SKILL_DIR / "references" / "diagram-patterns.md",

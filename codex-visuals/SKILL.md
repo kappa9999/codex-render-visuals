@@ -1,11 +1,11 @@
 ---
 name: codex-visuals
-description: Create production-ready SVG diagrams and static visuals for Codex-compatible clients. Use this skill when the user asks to visualize, diagram, compare, map out, or explain a spatial, structural, sequential, or data-heavy idea more clearly with an image than with prose alone.
+description: Create production-ready Mermaid and SVG visuals for Codex-compatible clients. Use this skill when the user asks to visualize, diagram, compare, map out, or explain a spatial, structural, sequential, or data-heavy idea more clearly with a visual than with prose alone.
 ---
 
 # Codex Visuals
 
-Use this skill to turn explanations into polished static visuals that render reliably in Codex-compatible clients.
+Use this skill to turn explanations into polished native visuals that render reliably in Codex-compatible clients.
 
 ## When To Use It
 
@@ -23,8 +23,8 @@ Prefer this skill proactively when a diagram would clarify relationships better 
 
 1. For Codex desktop, prefer Mermaid for simple flows, lifecycles, and graph-style diagrams.
 2. Use standalone SVG plus a Markdown image tag for engineering, illustrative, or tightly annotated visuals.
-3. Treat PNG export as optional publishing fallback, not the default Codex runtime path.
-4. Never assume a custom renderer, HTML widget, iframe sandbox, or JavaScript bridge exists.
+3. Keep the v1 runtime path native: Mermaid or SVG only.
+4. Never assume a custom renderer, HTML widget, iframe sandbox, JavaScript bridge, or raster export step exists.
 
 Before the first visual in a conversation, read:
 
@@ -55,7 +55,6 @@ Use the capability ladder from `references/client-compatibility.md`.
 
 - Native flow path: Mermaid fence for simple graphs and workflows in Codex desktop
 - Native precise path: SVG file plus Markdown image
-- Optional publishing fallback: PNG file plus Markdown image
 
 For Codex desktop, native output should stay dependency-light: Mermaid when the diagram can be expressed as a graph, SVG image when it cannot.
 
@@ -75,7 +74,7 @@ For Mermaid output:
 python codex-visuals/scripts/write_visual.py --slug api-request-lifecycle --format mmd --output-dir ./visuals --source-file ./draft.mmd --print-fence
 ```
 
-If you already have the final SVG content, you may also write it directly. Keep filenames short, lowercase, and hyphenated.
+If you already have the final SVG or Mermaid content, you may also write it directly. Keep filenames short, lowercase, and hyphenated.
 
 ### 4. Validate Before Sending
 
@@ -106,7 +105,7 @@ Do not dump raw SVG, HTML, or oversized setup text into the answer unless the us
 
 ## Output Contract
 
-For SVG and PNG output:
+For SVG output:
 
 - use absolute file paths in Markdown image tags
 - include accessible alt text
@@ -114,12 +113,12 @@ For SVG and PNG output:
 - add `<title>` and `<desc>` to SVGs
 - use transparent or white backgrounds
 - keep labels readable at normal chat width
-- save the source SVG even if you also export PNG
+- keep the source SVG as the editable artifact
 
 Example embedding:
 
 ```markdown
-![House load transfer diagram](C:/absolute/path/house-load-transfer.png)
+![House load transfer diagram](C:/absolute/path/house-load-transfer.svg)
 ```
 
 For Mermaid output:
@@ -140,4 +139,4 @@ Every shipped visual should be:
 - visually calm rather than decorative
 - safe to render without client-specific features
 
-If a request needs true interactivity, say so explicitly and fall back to the best static representation unless the client capability is known.
+If a request needs true interactivity or raster publishing output, say so explicitly and keep the Codex response on the best Mermaid or SVG path available.
