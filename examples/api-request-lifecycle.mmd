@@ -1,0 +1,7 @@
+flowchart LR
+  browser["Browser<br/>client"] --> gateway["API gateway<br/>auth + rate limits"]
+  gateway --> service["Service<br/>validation + logic"]
+  service --> database["Database<br/>state read / write"]
+  database --> service
+  service --> gateway
+  gateway --> browser_response["Browser<br/>JSON response"]

@@ -1,19 +1,19 @@
 # Example prompts
 
-Use these prompts to verify that `codex-visuals` chooses a sensible output mode and produces a clean image artifact.
+Use these prompts to verify that `codex-visuals` chooses a sensible native output mode before falling back to image artifacts.
 
 ## 1. Structural explanation
 
 Prompt:
 
 ```text
-Use $codex-visuals to visualize load transfer in a house as a production SVG diagram with a PNG fallback if needed.
+Use $codex-visuals to visualize load transfer in a house as a production SVG diagram with a PNG fallback only if the target surface needs one.
 ```
 
 Expected mode:
 
 - Primary: standalone SVG embedded as a Markdown image
-- Fallback: PNG
+- Fallback: PNG for publishing or compatibility-only cases
 
 Expected artifact:
 
@@ -30,11 +30,12 @@ Use $codex-visuals to draw a flowchart of an API request lifecycle from browser 
 
 Expected mode:
 
-- SVG flowchart
-- Mermaid only if the client is known to render Mermaid reliably
+- Mermaid fence in Codex desktop
+- SVG only when the flow needs custom geometry or annotation density Mermaid cannot handle
 
 Expected artifact:
 
+- `examples/api-request-lifecycle.mmd`
 - `examples/api-request-lifecycle.svg`
 - `examples/api-request-lifecycle.png`
 - A single annotated diagram with arrows, retries if relevant, and clear failure/response branches

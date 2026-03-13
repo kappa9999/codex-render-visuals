@@ -21,11 +21,10 @@ Prefer this skill proactively when a diagram would clarify relationships better 
 
 ## Production Defaults
 
-1. Default to a standalone SVG file.
-2. Embed it with a Markdown image tag using an absolute file path.
-3. Keep a PNG fallback available when SVG rendering is inconsistent.
-4. Use Mermaid only for simple node-link diagrams and only when the client is known to support Mermaid.
-5. Never assume a custom renderer, HTML widget, iframe sandbox, or JavaScript bridge exists.
+1. For Codex desktop, prefer Mermaid for simple flows, lifecycles, and graph-style diagrams.
+2. Use standalone SVG plus a Markdown image tag for engineering, illustrative, or tightly annotated visuals.
+3. Treat PNG export as optional publishing fallback, not the default Codex runtime path.
+4. Never assume a custom renderer, HTML widget, iframe sandbox, or JavaScript bridge exists.
 
 Before the first visual in a conversation, read:
 
@@ -54,11 +53,11 @@ Route on the user's intent:
 
 Use the capability ladder from `references/client-compatibility.md`.
 
-- Primary: SVG file plus Markdown image
-- Fallback: PNG file plus Markdown image
-- Optional: Mermaid fence for simple graphs in known Mermaid-capable clients
+- Native flow path: Mermaid fence for simple graphs and workflows in Codex desktop
+- Native precise path: SVG file plus Markdown image
+- Optional publishing fallback: PNG file plus Markdown image
 
-For Codex desktop, image-first output is the default.
+For Codex desktop, native output should stay dependency-light: Mermaid when the diagram can be expressed as a graph, SVG image when it cannot.
 
 ### 3. Write The Artifact
 
@@ -68,6 +67,12 @@ Recommended pattern:
 
 ```bash
 python codex-visuals/scripts/write_visual.py --slug house-load-transfer --format svg --output-dir ./visuals --source-file ./draft.svg --print-markdown --alt "House load transfer diagram"
+```
+
+For Mermaid output:
+
+```bash
+python codex-visuals/scripts/write_visual.py --slug api-request-lifecycle --format mmd --output-dir ./visuals --source-file ./draft.mmd --print-fence
 ```
 
 If you already have the final SVG content, you may also write it directly. Keep filenames short, lowercase, and hyphenated.
@@ -115,6 +120,14 @@ Example embedding:
 
 ```markdown
 ![House load transfer diagram](C:/absolute/path/house-load-transfer.png)
+```
+
+For Mermaid output:
+
+```mermaid
+flowchart LR
+  A[Browser] --> B[Gateway]
+  B --> C[Service]
 ```
 
 ## Quality Bar

@@ -5,20 +5,20 @@ Use this file first to choose a rendering mode that the current client can actua
 ## Capability Ladder
 
 1. Standalone SVG file embedded with a Markdown image tag
-2. PNG file embedded with a Markdown image tag
-3. Mermaid fence for simple graphs when Mermaid support is known
+2. Mermaid fence for simple graphs when Mermaid support is known
+3. PNG file embedded with a Markdown image tag
 4. Raw source only when the user explicitly asks for source
 
 Default to the highest reliable rung, not the fanciest one.
 
 ## Codex Desktop
 
-Codex desktop should be treated as image-first unless proven otherwise.
+Codex desktop should be treated as native-text-plus-image first.
 
-- Best primary path: Markdown image tag to a local absolute path
-- Preferred source artifact: SVG
-- Safe fallback artifact: PNG
-- Mermaid: likely available in some builds, but do not promise it unless verified in the current environment
+- Best primary path for flows: Mermaid fence
+- Best primary path for precise layouts: Markdown image tag to a local absolute SVG path
+- Safe publishing fallback artifact: PNG
+- Mermaid: preferred for simple flows and graphs in Codex desktop
 - Custom fences such as `visualizer`: unsupported by default
 - HTML widgets and iframe-based interactivity: do not assume support
 
@@ -51,10 +51,10 @@ Keep the SVG source alongside the PNG whenever possible.
 
 ### Mermaid
 
-Use only when:
+Use as the first choice when:
 
 - the diagram is a simple flow or graph
-- the current client is known to render Mermaid
+- the current client is Codex desktop or another known Mermaid-capable surface
 - text layout is more important than custom geometry
 
 Do not use Mermaid for dense engineering callouts, structural sections, or detailed comparison cards.

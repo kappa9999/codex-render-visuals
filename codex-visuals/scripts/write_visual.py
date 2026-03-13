@@ -12,6 +12,7 @@ from pathlib import Path
 
 IMAGE_EXTENSIONS = {"svg", "png", "jpg", "jpeg", "webp"}
 TEXT_EXTENSIONS = {"svg", "html", "md", "mmd", "mermaid", "txt", "json"}
+MERMAID_EXTENSIONS = {"mmd", "mermaid"}
 
 
 def slugify(raw: str) -> str:
@@ -54,6 +55,11 @@ def markdown_embed(path: Path, alt_text: str) -> str:
     return f"![{alt_text}]({path.as_posix()})"
 
 
+def fenced_block(content: str, language: str) -> str:
+    body = content.rstrip()
+    return f"```{language}\n{body}\n```"
+
+
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Write a visual artifact and print its path.")
     parser.add_argument("--slug", required=True, help="Hyphen-friendly filename stem.")
@@ -65,6 +71,11 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--print-markdown",
         action="store_true",
         help="Print a Markdown image tag for image formats instead of only the path.",
+    )
+    parser.add_argument(
+        "--print-fence",
+        action="store_true",
+        help="Print a fenced Mermaid block for .mmd or .mermaid outputs.",
     )
     return parser.parse_args(argv)
 
@@ -78,6 +89,13 @@ def read_content(source_file: str | None) -> str:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
     fmt = args.format.lower().strip(".")
+
+    if args.print_markdown and args.print_fence:
+        print("error: choose only one of --print-markdown or --print-fence", file=sys.stderr)
+        return 2
+    if args.print_fence and fmt not in MERMAID_EXTENSIONS:
+        print("error: --print-fence only supports mmd or mermaid outputs", file=sys.stderr)
+        return 2
 
     if fmt not in TEXT_EXTENSIONS and args.source_file:
         path = copy_artifact_from_file(
@@ -100,6 +118,8 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.print_markdown and path.suffix.lower().lstrip(".") in IMAGE_EXTENSIONS:
         print(markdown_embed(path, args.alt))
+    elif args.print_fence:
+        print(fenced_block(path.read_text(encoding="utf-8"), "mermaid"))
     else:
         print(path.as_posix())
     return 0
